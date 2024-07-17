@@ -3,11 +3,11 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { authReducer } from './reducers/auth.reducer';
-import { AuthEffects } from './effects/auth.effects';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes'; 
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { AuthEffects } from './auth/auth.effects';
+import { authReducer } from './auth/auth.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [

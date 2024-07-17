@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControlOptions, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import * as AuthActions from '../../actions/auth.actions';
+import * as AuthActions from '../../auth/auth.actions';
 import { Store } from '@ngrx/store';
-import { AuthState } from '../../reducers/auth.reducer';
+import { AuthState } from '../../auth/auth.reducer';
 
 @Component({
   selector: 'app-signup',

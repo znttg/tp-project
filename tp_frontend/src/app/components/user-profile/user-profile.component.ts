@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as AuthActions from './../../actions/auth.actions';
-import { AuthState } from './../../reducers/auth.reducer';
+import * as AuthActions from '../../auth/auth.actions';
+import { AuthState } from '../../auth/auth.reducer';
 
 @Component({
   selector: 'app-user-profile',

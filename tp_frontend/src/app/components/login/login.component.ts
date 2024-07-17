@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import * as AuthActions from './../../actions/auth.actions';
-import { AuthState } from './../../reducers/auth.reducer';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import * as AuthActions from '../../auth/auth.actions';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthState } from '../../auth/auth.reducer';
 
 
 @Component({
