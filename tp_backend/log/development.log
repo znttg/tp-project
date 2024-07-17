@@ -227,3 +227,176 @@ Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 781)
 
   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "jti" = $1 WHERE "users"."id" = $2[0m  [["jti", "e80f37e0-5dce-456d-9dd0-381af8cdca74"], ["id", 1]]
+Started POST "/signup" for ::1 at 2024-07-16 10:32:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up", "registration"=>{"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up"}}
+Completed 422 Unprocessable Content in 72ms (Views: 0.1ms | ActiveRecord: 9.5ms | Allocations: 21957)
+
+
+Started POST "/signup" for ::1 at 2024-07-16 10:36:27 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up", "registration"=>{"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 939)
+
+
+Started POST "/signup" for ::1 at 2024-07-16 20:58:57 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up", "registration"=>{"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 1149)
+
+
+Started POST "/signup" for ::1 at 2024-07-16 20:59:25 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up", "registration"=>{"name"=>"Giovanni", "email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "passwordConfirmation"=>"[FILTERED]", "type"=>"[Auth] Sign Up"}}
+Completed 422 Unprocessable Content in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 927)
+
+
+Started POST "/signup" for ::1 at 2024-07-16 21:21:34 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}, "registration"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (123.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name", "jti") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "giovanni@giovanni.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-07-17 01:21:35.342351"], ["updated_at", "2024-07-17 01:21:35.342351"], ["name", "Giovanni"], ["jti", "b9469cbb-b849-4dcd-9e24-14b9c6b766db"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 381ms (Views: 0.1ms | ActiveRecord: 130.8ms | Allocations: 11778)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:23:21 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 342ms (ActiveRecord: 9.2ms | Allocations: 4574)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:23:24 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 231ms (ActiveRecord: 0.4ms | Allocations: 1204)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:23:59 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 234ms (ActiveRecord: 0.4ms | Allocations: 1190)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:13 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@precicom.com"], ["LIMIT", 1]]
+Completed 200 OK in 231ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1561)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:21 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@precicom.com"], ["LIMIT", 1]]
+Completed 200 OK in 231ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 1398)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:21 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@precicom.com"], ["LIMIT", 1]]
+Completed 200 OK in 235ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1398)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:22 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@precicom.com"], ["LIMIT", 1]]
+Completed 200 OK in 205ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1398)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:36 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 224ms (ActiveRecord: 0.3ms | Allocations: 1203)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:47 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1399)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:48 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1397)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:49 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1398)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:49 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 205ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1404)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:49 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 205ms (Views: 0.0ms | ActiveRecord: 0.2ms | Allocations: 1405)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:25:50 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 204ms (Views: 0.0ms | ActiveRecord: 0.2ms | Allocations: 1406)
+
+
+Started POST "/signup" for ::1 at 2024-07-17 00:27:00 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}, "registration"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name", "jti") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["email", "giovanni@giovanni.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-07-17 04:27:00.249081"], ["updated_at", "2024-07-17 04:27:00.249081"], ["name", "Giovanni"], ["jti", "4742a10e-33af-4b8a-9d0a-a2cdd70154e8"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 238ms (Views: 0.1ms | ActiveRecord: 3.5ms | Allocations: 4225)
+
+
+Started POST "/signup" for ::1 at 2024-07-17 00:27:07 -0400
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}, "registration"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]", "name"=>"Giovanni"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Content in 238ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 3526)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:27:34 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1405)
+
+
+Started POST "/login" for ::1 at 2024-07-17 00:27:36 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Started POST "/login" for ::1 at 2024-07-17 00:27:36 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 6326)
+
+
+Completed 200 OK in 253ms (Views: 0.0ms | ActiveRecord: 4.0ms | Allocations: 4571)
+
+

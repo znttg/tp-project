@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import * as AuthActions from './../../actions/auth.actions';
 import { AuthState } from './../../reducers/auth.reducer';
 import { RouterLink } from '@angular/router';
@@ -16,20 +16,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
 
   private formBuilder = inject(FormBuilder)
   private store = inject(Store<AuthState>)
 
-  onInit() {
-      this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
-    });
-  }
+  loginForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
 
   onSubmit() {
-    const credentials = this.loginForm.value;
+    const credentials = this.loginForm.value as { email: string; password: string };
     this.store.dispatch(AuthActions.login(credentials));
   }
 }
