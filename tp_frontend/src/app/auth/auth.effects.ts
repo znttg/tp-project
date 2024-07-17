@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthService } from './../services/auth/auth.service';
 import * as AuthActions from '../auth/auth.actions';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthEffects {
@@ -15,9 +15,13 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.login),
       mergeMap(action =>
-        this.authService.login(action).pipe(
-          map(user => AuthActions.loginSuccess({ user })),
-          catchError(error => of(AuthActions.loginFailure({ error })))
+        this.authService.login(action)
+        .pipe(
+          tap((response: any) => {
+            localStorage.setItem('token', response.status.token)
+          }),
+          map(token => AuthActions.loginSuccess({ token })),
+          catchError(error => of(AuthActions.loginFailure({ error }))),
         )
       )
     )
@@ -28,7 +32,7 @@ export class AuthEffects {
       ofType(AuthActions.signUp),
       mergeMap(action =>
         this.authService.signUp(action).pipe(
-          map(user => AuthActions.signUpSuccess({ user })),
+          map(token => AuthActions.signUpSuccess({ token })),
           catchError(error => of(AuthActions.signUpFailure({ error })))
         )
       )
