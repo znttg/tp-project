@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable} from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { User } from '../models/user';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -12,7 +11,7 @@ export class AuthService {
   
   http = inject(HttpClient);
 
-  login(credentials: { email: string; password: string }): Observable<any> {
+  signIn(credentials: { email: string; password: string }): Observable<any> {
     const body = { user: { email: credentials.email, password: credentials.password }}
     return this.http.post<any>(`${this.apiUrl}/login`, body); 
   }

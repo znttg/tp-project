@@ -473,3 +473,284 @@ Processing by Users::SessionsController#create as */*
 Completed 200 OK in 227ms (Views: 0.1ms | ActiveRecord: 5.3ms | Allocations: 6320)
 
 
+Started POST "/login" for ::1 at 2024-07-17 19:36:06 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 298ms (Views: 0.1ms | ActiveRecord: 14.4ms | Allocations: 24289)
+
+
+Started POST "/login" for ::1 at 2024-07-17 19:38:45 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1415)
+
+
+Started POST "/login" for ::1 at 2024-07-17 19:38:52 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 234ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1407)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:42:11 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 122)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:42:11 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 59)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:06 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:06 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:10 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 59)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:10 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:43:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:46:16 -0400
+Started GET "/clients" for ::1 at 2024-07-17 19:46:16 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:46:16 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started POST "/login" for ::1 at 2024-07-17 19:47:04 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 280ms (Views: 0.1ms | ActiveRecord: 5.7ms | Allocations: 4134)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:47:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:47:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:05 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:06 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:08 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:08 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:48:14 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:54:27 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:54:27 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:56:24 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:56:24 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:57:04 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:57:05 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:57:36 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 19:57:36 -0400
+Processing by ClientsController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 58)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:18:07 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 314)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:18:33 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 159)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:19:01 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 159)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:19:18 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 355ms (Views: 0.1ms | ActiveRecord: 7.2ms | Allocations: 4131)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:23:34 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1516)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:23:50 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1290)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:24:01 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1278)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:25:23 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1278)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:25:51 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1277)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:27:03 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1278)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:27:05 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1277)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:44:44 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 128ms (Views: 0.3ms | ActiveRecord: 9.8ms | Allocations: 3990)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:45:34 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1277)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:46:26 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1277)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:52:35 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 64ms (Views: 0.3ms | ActiveRecord: 5.6ms | Allocations: 3968)
+
+
+Started POST "/login" for ::1 at 2024-07-17 20:53:57 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1277)
+
+
+Started GET "/clients" for ::1 at 2024-07-17 20:53:57 -0400
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mClient Load (0.9ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:7:in `index'
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 1.2ms | Allocations: 4840)
+
+

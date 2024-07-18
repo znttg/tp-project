@@ -8,11 +8,11 @@ import { Client } from '../../models/client';
 })
 export class ClientsService {
 
-  private apiUrl = 'http://localhost:3001/clients'; // Replace with your Rails API URL
+  private apiUrl = 'http://localhost:3001'
 
   constructor(private http: HttpClient) {}
 
-  fetchClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(`${this.apiUrl}`);
+  fetchClients(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/clients`);
   }
 }
