@@ -16,7 +16,8 @@ export const clientsReducer = createReducer(
   initialState,
   on(ClientsActions.loadClientsSuccess, (state, { clients }) => ({
     ...state,
-    clients
+    clients,
+    error: null
   })),
   on(ClientsActions.loadClientsFailure, (state, { error }) => ({
     ...state,

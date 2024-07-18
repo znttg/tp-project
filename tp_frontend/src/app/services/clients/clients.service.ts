@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../../models/client';
@@ -9,12 +9,12 @@ import { environment } from '../../../environments/environment';
 })
 export class ClientsService {
 
-  private apiUrl = environment.apiUrl
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiUrl);
+  getClients(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/clients`);
   }
 
   addClient(client: Client): Observable<Client> {

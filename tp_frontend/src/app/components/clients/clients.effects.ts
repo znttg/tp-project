@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import * as ClientsActions from './clients.actions';
@@ -9,9 +9,12 @@ import { ClientsService } from '../../services/clients/clients.service';
 @Injectable()
 export class ClientsEffects {
 
+  private actions$ = inject(Actions);
+  private clientsService = inject(ClientsService);
+
   loadClients$ = createEffect(() => this.actions$.pipe(
     ofType(ClientsActions.loadClients),
-    switchMap(() =>
+    mergeMap(() =>
       this.clientsService.getClients().pipe(
         map(clients => ClientsActions.loadClientsSuccess({ clients })),
         catchError(error => of(ClientsActions.loadClientsFailure({ error })))
@@ -38,9 +41,4 @@ export class ClientsEffects {
       )
     )
   ));
-
-  constructor(
-    private actions$: Actions,
-    private clientsService: ClientsService
-  ) {}
 }

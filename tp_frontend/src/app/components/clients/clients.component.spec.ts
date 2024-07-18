@@ -42,8 +42,8 @@ describe('ClientsComponent', () => {
 
   it('should display the list of clients', () => {
     const mockClients: Client[] = [
-      { id: 1, name: 'Client 1', relationshipStart: new Date(), addressCity: 'City 1', addressPostalCode: '11111', addressStreet: 'Street 1', addressApt: 'Apt 1', activityType: 'Type 1', infoEmail: 'client1@example.com' },
-      { id: 2, name: 'Client 2', relationshipStart: new Date(), addressCity: 'City 2', addressPostalCode: '22222', addressStreet: 'Street 2', addressApt: 'Apt 2', activityType: 'Type 2', infoEmail: 'client2@example.com' }
+      { id: 1, name: 'Client 1', relationshipStart: new Date(), addressCity: 'City 1', addressPostalCode: '11111', addressStreet: 'Street 1', addressApt: 'Apt 1', activityType: 1, infoEmail: 'client1@example.com' },
+      { id: 2, name: 'Client 2', relationshipStart: new Date(), addressCity: 'City 2', addressPostalCode: '22222', addressStreet: 'Street 2', addressApt: 'Apt 2', activityType: 2, infoEmail: 'client2@example.com' }
     ];
 
     mockClientsSelector.setResult(mockClients);

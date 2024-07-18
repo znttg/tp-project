@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../../models/client';
 import { AppState } from '../../store/app.state';
-import { select, Store } from '@ngrx/store';
+import { select, Store, StoreModule } from '@ngrx/store';
 import { selectAllClients } from './clients.selectors'
 import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,15 +32,15 @@ export class ClientsComponent implements OnInit {
 
   onAddClient() {
     const newClient: Client = {
-      id: null,
-      name: 'New Client',
-      relationshipStart: new Date(),
-      addressCity: '',
-      addressPostalCode: '',
-      addressStreet: '',
-      addressApt: '',
-      activityType: '',
-      infoEmail: ''
+      id: 1,
+      name: 'string',
+      relationship_start: new Date,
+      address_city: 'string',
+      address_postal_code: 'string',
+      address_street: 'string',
+      address_apt: 'string',
+      activity_type: 1,
+      info_email: 'string',
     };
     this.store.dispatch(addClient({ client: newClient }));
   }

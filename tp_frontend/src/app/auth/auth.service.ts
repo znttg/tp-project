@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = environment.apiUrl;
   
   http = inject(HttpClient);
 
@@ -19,10 +19,6 @@ export class AuthService {
   signUp(user: { name: string; email: string; password: string; }): Observable<any> {
     const body = { user: { email: user.email, password: user.password, name: user.name }}
     return this.http.post<any>(`${this.apiUrl}/signup`, body);
-  }
-
-  getUserProfile(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/profile`);
   }
 
   signOut(): void {
