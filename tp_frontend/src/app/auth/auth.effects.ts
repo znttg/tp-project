@@ -20,10 +20,11 @@ export class AuthEffects {
       mergeMap(action =>
         this.authService.signIn(action)
         .pipe(
-          tap((response: any) => { 
-            localStorage.setItem('token', response.status.token);
-          }),
-          map(token => AuthActions.loginSuccess({ token })),
+          map((response: any) => {
+            const token = response.status.token;
+            localStorage.setItem('token', token);
+            return AuthActions.loginSuccess({ token });
+          }), 
           catchError(error => of(AuthActions.loginFailure({ error }))),
         )
       )
@@ -32,11 +33,32 @@ export class AuthEffects {
 
   loginSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.loginSuccess),
-    tap(() => {
+    tap(({ token }) => {
+      localStorage.setItem('token', token);
       this.router.navigate(['/clients']);
     }),
     map(() => ClientsActions.loadClients())
   ))
+
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.logout),
+    tap(() => {
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    })
+  ), { dispatch: false });
+
+  loadAuthFromLocalStorage$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.loadAuthFromLocalStorage),
+    map(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        return AuthActions.loginSuccess({ token });
+      } else {
+        return AuthActions.logout();
+      }
+    })
+  ));
 
   signUp$ = createEffect(() =>
     this.actions$.pipe(
@@ -48,19 +70,5 @@ export class AuthEffects {
         )
       )
     )
-  );
-
-  loadUserProfile$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.loadUserProfile),
-      mergeMap(() =>
-        this.authService.getUserProfile().pipe(
-          map(user => AuthActions.loadUserProfileSuccess({ user })),
-          catchError(error => of(AuthActions.loadUserProfileFailure({ error })))
-        )
-      )
-    )
-  );
-
-  
+  );  
 }

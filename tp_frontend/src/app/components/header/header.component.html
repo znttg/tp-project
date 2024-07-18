@@ -9,7 +9,8 @@
       <h1 routerLink="/" class="cursor-pointer -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">TP Project</h1>
     </div>
     <div class="lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
-      <a routerLink="/signup" routerLinkActive="activebutton" class="button cursor-pointer text-sm font-semibold leading-6 text-gray-900">Sign up </a>  
-      <a routerLink="/login" routerLinkActive="activebutton" class="button cursor-pointer text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      <!-- <a *ngIf="!(isAuthenticated$ | async)" routerLink="/signup" routerLinkActive="activebutton" class="button cursor-pointer text-sm font-semibold leading-6 text-gray-900">Sign up </a>   -->
+      <a *ngIf="!(isAuthenticated$ | async)" routerLink="/login" routerLinkActive="activebutton" class="button cursor-pointer text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a *ngIf="(isAuthenticated$ | async)"  (click)="onLogout()" routerLinkActive="activebutton" class="button cursor-pointer text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&cross;</span></a>
     </div>
   </nav>

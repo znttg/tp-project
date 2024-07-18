@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
+import { AppState } from './store/app.state';
+import { Store } from '@ngrx/store';
+import * as AuthActions from './auth/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +15,13 @@ import { HeaderComponent } from './components/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
+  private store = inject(Store<AppState>)
+
+  ngOnInit() {
+    this.store.dispatch(AuthActions.loadAuthFromLocalStorage());
+  }
+
   title = 'tp_frontend';
 }
