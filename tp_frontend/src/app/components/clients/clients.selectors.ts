@@ -3,7 +3,7 @@ import { ClientsState } from './clients.reducer';
 
 export const selectClientsState = createFeatureSelector<ClientsState>('clients');
 
-export const getClients = createSelector(
+export const selectAllClients = createSelector(
   selectClientsState,
   (state: ClientsState) => state.clients
 );

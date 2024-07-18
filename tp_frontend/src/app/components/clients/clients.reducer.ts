@@ -16,10 +16,25 @@ export const clientsReducer = createReducer(
   initialState,
   on(ClientsActions.loadClientsSuccess, (state, { clients }) => ({
     ...state,
-    clients,
-    error: null
+    clients
   })),
   on(ClientsActions.loadClientsFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
+  on(ClientsActions.addClientSuccess, (state, { client }) => ({
+    ...state,
+    clients: [...state.clients, client]
+  })),
+  on(ClientsActions.addClientFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
+  on(ClientsActions.deleteClientSuccess, (state, { clientId }) => ({
+    ...state,
+    clients: state.clients.filter(client => client.id !== clientId)
+  })),
+  on(ClientsActions.deleteClientFailure, (state, { error }) => ({
     ...state,
     error
   }))

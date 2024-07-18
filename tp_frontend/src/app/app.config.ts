@@ -9,13 +9,14 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi
 import { AuthEffects } from './auth/auth.effects';
 import { authReducer } from './auth/auth.reducer';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { clientsReducer } from './components/clients/clients.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(BrowserModule),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideClientHydration(),
-    provideStore({ auth: authReducer }),
+    provideStore({ auth: authReducer, clients: clientsReducer }),
     provideEffects([AuthEffects]),
     provideStoreDevtools(),
     provideRouter(routes),
@@ -23,6 +24,6 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptorsFromDi()
     ),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 };

@@ -5,7 +5,33 @@
           <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 class=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Customers List</h2>
           </div>
-          
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Relationship Start</th>
+                <th>City</th>
+                <th>Postal Code</th>
+                <th>Street</th>
+                <th>Apt</th>
+                <th>Activity Type</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients$ | async">
+                <td>{{ client.name }}</td>
+                <td>{{ client.relationshipStart | date }}</td>
+                <td>{{ client.addressCity }}</td>
+                <td>{{ client.addressPostalCode }}</td>
+                <td>{{ client.addressStreet }}</td>
+                <td>{{ client.addressApt }}</td>
+                <td>{{ client.activityType }}</td>
+                <td>{{ client.infoEmail }}</td>
+              </tr>
+            </tbody>
+          </table>
         
           
         
