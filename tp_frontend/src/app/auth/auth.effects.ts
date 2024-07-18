@@ -6,6 +6,8 @@ import { of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import * as ClientsActions from '../components/clients/clients.actions';
+import { isLocalStorageAvailable } from '../utils/local-storage.util';
+
 
 @Injectable()
 export class AuthEffects {
@@ -22,7 +24,8 @@ export class AuthEffects {
         .pipe(
           map((response: any) => {
             const token = response.status.token;
-            localStorage.setItem('token', token);
+            if(isLocalStorageAvailable()) 
+              localStorage.setItem('token', token);
             return AuthActions.loginSuccess({ token });
           }), 
           catchError(error => of(AuthActions.loginFailure({ error }))),
@@ -34,7 +37,8 @@ export class AuthEffects {
   loginSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.loginSuccess),
     tap(({ token }) => {
-      localStorage.setItem('token', token);
+      if(isLocalStorageAvailable())
+        localStorage.setItem('token', token);
       this.router.navigate(['/clients']);
     }),
     map(() => ClientsActions.loadClients())
@@ -43,7 +47,8 @@ export class AuthEffects {
   logout$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.logout),
     tap(() => {
-      localStorage.removeItem('token');
+      if(isLocalStorageAvailable())
+        localStorage.removeItem('token');
       this.router.navigate(['/']);
     })
   ), { dispatch: false });
@@ -51,7 +56,9 @@ export class AuthEffects {
   loadAuthFromLocalStorage$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.loadAuthFromLocalStorage),
     map(() => {
-      const token = localStorage.getItem('token');
+      let token = null;
+      if(isLocalStorageAvailable())
+        token = localStorage.getItem('token');
       if (token) {
         return AuthActions.loginSuccess({ token });
       } else {

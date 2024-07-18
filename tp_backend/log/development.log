@@ -817,3 +817,307 @@ Processing by Users::SessionsController#create as HTML
 Completed 200 OK in 233ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1394)
 
 
+Started POST "/clients" for ::1 at 2024-07-17 23:56:23 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"John Doe", "relationship_start"=>"2023-07-17", "address_city"=>"New York", "address_postal_code"=>"10001", "address_street"=>"123 Main St", "address_apt"=>"Apt 4B", "activity_type"=>"Active", "info_email"=>"john.doe@example.com"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 875)
+
+
+Started POST "/login" for ::1 at 2024-07-17 23:56:32 -0400
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"test@precicom.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@precicom.com"], ["LIMIT", 1]]
+Completed 200 OK in 320ms (Views: 0.1ms | ActiveRecord: 11.4ms | Allocations: 23640)
+
+
+Started POST "/clients" for ::1 at 2024-07-17 23:56:58 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"John Doe", "relationship_start"=>"2023-07-17", "address_city"=>"New York", "address_postal_code"=>"10001", "address_street"=>"123 Main St", "address_apt"=>"Apt 4B", "activity_type"=>"Active", "info_email"=>"john.doe@example.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.5ms | Allocations: 11906)
+
+
+  
+ArgumentError ('Active' is not a valid activity_type):
+  
+app/controllers/clients_controller.rb:15:in `create'
+Started POST "/clients" for ::1 at 2024-07-17 23:57:11 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"John Doe", "relationship_start"=>"2023-07-17", "address_city"=>"New York", "address_postal_code"=>"10001", "address_street"=>"123 Main St", "address_apt"=>"Apt 4B", "activity_type"=>1, "info_email"=>"john.doe@example.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (4.0ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "John Doe"], ["relationship_start", "2023-07-17"], ["address_city", "New York"], ["address_postal_code", "10001"], ["address_street", "123 Main St"], ["address_apt", "Apt 4B"], ["activity_type", 1], ["info_email", "john.doe@example.com"], ["created_at", "2024-07-18 03:57:11.036303"], ["updated_at", "2024-07-18 03:57:11.036303"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 12ms (Views: 0.2ms | ActiveRecord: 4.8ms | Allocations: 3635)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:01:20 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Frank Huard", "relationship_start"=>"2023-07-17", "address_city"=>"Tlogosari", "address_postal_code"=>nil, "address_street"=>"04 Havey Terrace", "address_apt"=>"42868 Kropf Place", "activity_type"=>1, "info_email"=>"fhuard0@vk.com"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 422 Unprocessable Content in 4ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1917)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:02:00 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Flint Falcus", "relationship_start"=>"2023-07-17", "address_city"=>"Boston", "address_postal_code"=>"5711", "address_street"=>"6 Dapin Circle", "address_apt"=>"2498 Scofield Center", "activity_type"=>1, "info_email"=>"ffalcus1@nyu.edu"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.1ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Flint Falcus"], ["relationship_start", "2023-07-17"], ["address_city", "Boston"], ["address_postal_code", "5711"], ["address_street", "6 Dapin Circle"], ["address_apt", "2498 Scofield Center"], ["activity_type", 1], ["info_email", "ffalcus1@nyu.edu"], ["created_at", "2024-07-18 04:02:00.946025"], ["updated_at", "2024-07-18 04:02:00.946025"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 5ms (Views: 0.2ms | ActiveRecord: 2.6ms | Allocations: 2778)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:02:23 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Elliott Spridgen", "relationship_start"=>"2023-07-17", "address_city"=>"El Cacao", "address_postal_code"=>"11511", "address_street"=>"3584 1st Avenue", "address_apt"=>"96547 Westerfield Circle", "activity_type"=>1, "info_email"=>"espridgen3@soundcloud.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.3ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Elliott Spridgen"], ["relationship_start", "2023-07-17"], ["address_city", "El Cacao"], ["address_postal_code", "11511"], ["address_street", "3584 1st Avenue"], ["address_apt", "96547 Westerfield Circle"], ["activity_type", 1], ["info_email", "espridgen3@soundcloud.com"], ["created_at", "2024-07-18 04:02:23.922271"], ["updated_at", "2024-07-18 04:02:23.922271"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.2ms | ActiveRecord: 2.3ms | Allocations: 2786)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:02:44 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{"client":{"name":"Tomasine MacMaykin","relationship_start":"2023-07-17","address_city":"Olbramovice","address_postal_code":"671 76","address_street":"8 New Castle Avenue","address_apt":"54816 Lake View Trail","activity_type":1,"info_email":"tmacmaykin4@ning.com"}},
+Processing by ClientsController#create as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.4ms | Allocations: 1217)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/clients_controller.rb:43:in `client_params'
+app/controllers/clients_controller.rb:15:in `create'
+Started POST "/clients" for ::1 at 2024-07-18 00:02:55 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Erick Skeemer", "relationship_start"=>"2023-07-17", "address_city"=>"Daitou", "address_postal_code"=>nil, "address_street"=>"8 Nobel Point", "address_apt"=>"000 Miller Crossing", "activity_type"=>1, "info_email"=>"eskeemer5@wikispaces.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 422 Unprocessable Content in 3ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 1615)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:03 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Becca Roskelly", "relationship_start"=>"2023-07-17", "address_city"=>"Federal", "address_postal_code"=>"3180", "address_street"=>"18 Warrior Circle", "address_apt"=>"5 Scofield Hill", "activity_type"=>1, "info_email"=>"broskelly6@icio.us"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.2ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Becca Roskelly"], ["relationship_start", "2023-07-17"], ["address_city", "Federal"], ["address_postal_code", "3180"], ["address_street", "18 Warrior Circle"], ["address_apt", "5 Scofield Hill"], ["activity_type", 1], ["info_email", "broskelly6@icio.us"], ["created_at", "2024-07-18 04:03:03.920126"], ["updated_at", "2024-07-18 04:03:03.920126"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 9ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 2779)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:17 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Jamison Macewan", "relationship_start"=>"2023-07-17", "address_city"=>"Thívai", "address_postal_code"=>1231, "address_street"=>"17 Sugar Road", "address_apt"=>"13 Packers Pass", "activity_type"=>1, "info_email"=>"jmacewan7@indiegogo.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.0ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Jamison Macewan"], ["relationship_start", "2023-07-17"], ["address_city", "Thívai"], ["address_postal_code", "1231"], ["address_street", "17 Sugar Road"], ["address_apt", "13 Packers Pass"], ["activity_type", 1], ["info_email", "jmacewan7@indiegogo.com"], ["created_at", "2024-07-18 04:03:17.026169"], ["updated_at", "2024-07-18 04:03:17.026169"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 6ms (Views: 0.1ms | ActiveRecord: 1.6ms | Allocations: 2781)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:27 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Rufus Dowden", "relationship_start"=>"2023-07-17", "address_city"=>"Banjar Bali", "address_postal_code"=>12341, "address_street"=>"9491 Prairie Rose Point", "address_apt"=>"2605 Susan Plaza", "activity_type"=>1, "info_email"=>"rdowden8@taobao.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.1ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Rufus Dowden"], ["relationship_start", "2023-07-17"], ["address_city", "Banjar Bali"], ["address_postal_code", "12341"], ["address_street", "9491 Prairie Rose Point"], ["address_apt", "2605 Susan Plaza"], ["activity_type", 1], ["info_email", "rdowden8@taobao.com"], ["created_at", "2024-07-18 04:03:27.533344"], ["updated_at", "2024-07-18 04:03:27.533344"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 8ms (Views: 0.3ms | ActiveRecord: 1.9ms | Allocations: 2781)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:37 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Horatius Avrashin", "relationship_start"=>"2023-07-17", "address_city"=>"Mardā", "address_postal_code"=>nil, "address_street"=>"189 Fulton Lane", "address_apt"=>"1120 Kings Alley", "activity_type"=>1, "info_email"=>"havrashin9@phpbb.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 422 Unprocessable Content in 4ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1620)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:44 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Horatius Avrashin", "relationship_start"=>"2023-07-17", "address_city"=>"Mardā", "address_postal_code"=>1234213, "address_street"=>"189 Fulton Lane", "address_apt"=>"1120 Kings Alley", "activity_type"=>1, "info_email"=>"havrashin9@phpbb.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.1ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Horatius Avrashin"], ["relationship_start", "2023-07-17"], ["address_city", "Mardā"], ["address_postal_code", "1234213"], ["address_street", "189 Fulton Lane"], ["address_apt", "1120 Kings Alley"], ["activity_type", 1], ["info_email", "havrashin9@phpbb.com"], ["created_at", "2024-07-18 04:03:44.142833"], ["updated_at", "2024-07-18 04:03:44.142833"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 8ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 2784)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:03:52 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Emory Cantu", "relationship_start"=>"2023-07-17", "address_city"=>"Camino Real", "address_postal_code"=>"45306", "address_street"=>"3841 Valley Edge Circle", "address_apt"=>"230 Spenser Drive", "activity_type"=>1, "info_email"=>"ecantua@ucoz.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.2ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Emory Cantu"], ["relationship_start", "2023-07-17"], ["address_city", "Camino Real"], ["address_postal_code", "45306"], ["address_street", "3841 Valley Edge Circle"], ["address_apt", "230 Spenser Drive"], ["activity_type", 1], ["info_email", "ecantua@ucoz.com"], ["created_at", "2024-07-18 04:03:52.599566"], ["updated_at", "2024-07-18 04:03:52.599566"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.4ms | ActiveRecord: 2.0ms | Allocations: 2779)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:00 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Eirena Worlock", "relationship_start"=>"2023-07-17", "address_city"=>"Capandanan", "address_postal_code"=>"2445", "address_street"=>"7750 Anthes Trail", "address_apt"=>"3088 Welch Hill", "activity_type"=>1, "info_email"=>"eworlockb@addthis.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.1ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Eirena Worlock"], ["relationship_start", "2023-07-17"], ["address_city", "Capandanan"], ["address_postal_code", "2445"], ["address_street", "7750 Anthes Trail"], ["address_apt", "3088 Welch Hill"], ["activity_type", 1], ["info_email", "eworlockb@addthis.com"], ["created_at", "2024-07-18 04:04:00.880560"], ["updated_at", "2024-07-18 04:04:00.880560"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 6ms (Views: 0.3ms | ActiveRecord: 1.9ms | Allocations: 2778)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:08 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Chickie Leger", "relationship_start"=>"2023-07-17", "address_city"=>"El Bolsón", "address_postal_code"=>"8430", "address_street"=>"65699 Mcbride Crossing", "address_apt"=>"14780 Karstens Place", "activity_type"=>1, "info_email"=>"clegerc@bloglines.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.2ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Chickie Leger"], ["relationship_start", "2023-07-17"], ["address_city", "El Bolsón"], ["address_postal_code", "8430"], ["address_street", "65699 Mcbride Crossing"], ["address_apt", "14780 Karstens Place"], ["activity_type", 1], ["info_email", "clegerc@bloglines.com"], ["created_at", "2024-07-18 04:04:08.845825"], ["updated_at", "2024-07-18 04:04:08.845825"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocations: 2782)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:15 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Fredra Farny", "relationship_start"=>"2023-07-17", "address_city"=>"Soacha", "address_postal_code"=>"250058", "address_street"=>"161 Gerald Hill", "address_apt"=>"629 Pine View Trail", "activity_type"=>1, "info_email"=>"ffarnyd@gravatar.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (2.3ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Fredra Farny"], ["relationship_start", "2023-07-17"], ["address_city", "Soacha"], ["address_postal_code", "250058"], ["address_street", "161 Gerald Hill"], ["address_apt", "629 Pine View Trail"], ["activity_type", 1], ["info_email", "ffarnyd@gravatar.com"], ["created_at", "2024-07-18 04:04:15.216700"], ["updated_at", "2024-07-18 04:04:15.216700"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 8ms (Views: 0.2ms | ActiveRecord: 3.0ms | Allocations: 2778)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:30 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Lionel Crucetti", "relationship_start"=>"2023-07-17", "address_city"=>"Taimaman", "address_postal_code"=>123412, "address_street"=>"7 Sherman Terrace", "address_apt"=>"483 Memorial Drive", "activity_type"=>1, "info_email"=>"lcrucettie@amazon.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.2ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Lionel Crucetti"], ["relationship_start", "2023-07-17"], ["address_city", "Taimaman"], ["address_postal_code", "123412"], ["address_street", "7 Sherman Terrace"], ["address_apt", "483 Memorial Drive"], ["activity_type", 1], ["info_email", "lcrucettie@amazon.com"], ["created_at", "2024-07-18 04:04:30.535004"], ["updated_at", "2024-07-18 04:04:30.535004"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 2781)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:40 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Ingamar Gaines", "relationship_start"=>"2023-07-17", "address_city"=>"Volary", "address_postal_code"=>"384 51", "address_street"=>"28 Loeprich Way", "address_apt"=>"8859 Mayfield Trail", "activity_type"=>1, "info_email"=>"igainesf@typepad.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.6ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Ingamar Gaines"], ["relationship_start", "2023-07-17"], ["address_city", "Volary"], ["address_postal_code", "384 51"], ["address_street", "28 Loeprich Way"], ["address_apt", "8859 Mayfield Trail"], ["activity_type", 1], ["info_email", "igainesf@typepad.com"], ["created_at", "2024-07-18 04:04:40.684098"], ["updated_at", "2024-07-18 04:04:40.684098"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 12ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 2779)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:04:51 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{"client":{"name":"Bronny Dufer","relationship_start":"2023-07-17","address_city":"Gununglajang","address_postal_code":sdf234,"address_street":"6 5th Terrace","address_apt":"59160 Debra Road","activity_type":1,"info_email":"bduferg@wunderground.com"}}
+Processing by ClientsController#create as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.1ms | Allocations: 1190)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/clients_controller.rb:43:in `client_params'
+app/controllers/clients_controller.rb:15:in `create'
+Started POST "/clients" for ::1 at 2024-07-18 00:04:57 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Bronny Dufer", "relationship_start"=>"2023-07-17", "address_city"=>"Gununglajang", "address_postal_code"=>12421, "address_street"=>"6 5th Terrace", "address_apt"=>"59160 Debra Road", "activity_type"=>1, "info_email"=>"bduferg@wunderground.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.0ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Bronny Dufer"], ["relationship_start", "2023-07-17"], ["address_city", "Gununglajang"], ["address_postal_code", "12421"], ["address_street", "6 5th Terrace"], ["address_apt", "59160 Debra Road"], ["activity_type", 1], ["info_email", "bduferg@wunderground.com"], ["created_at", "2024-07-18 04:04:57.481304"], ["updated_at", "2024-07-18 04:04:57.481304"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 6ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 2779)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:05:07 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Ethelin Stannus", "relationship_start"=>"2023-07-17", "address_city"=>"Trảng Bàng", "address_postal_code"=>21434, "address_street"=>"130 Spohn Street", "address_apt"=>"81878 Reindahl Court", "activity_type"=>1, "info_email"=>"estannush@i2i.jp"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.2ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Ethelin Stannus"], ["relationship_start", "2023-07-17"], ["address_city", "Trảng Bàng"], ["address_postal_code", "21434"], ["address_street", "130 Spohn Street"], ["address_apt", "81878 Reindahl Court"], ["activity_type", 1], ["info_email", "estannush@i2i.jp"], ["created_at", "2024-07-18 04:05:07.812079"], ["updated_at", "2024-07-18 04:05:07.812079"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.4ms | ActiveRecord: 2.0ms | Allocations: 2782)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:05:17 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Phoebe Hachette", "relationship_start"=>"2023-07-17", "address_city"=>"Touama", "address_postal_code"=>213421, "address_street"=>"96893 Scoville Place", "address_apt"=>"19804 Rockefeller Plaza", "activity_type"=>1, "info_email"=>"phachettei@twitter.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (0.8ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Phoebe Hachette"], ["relationship_start", "2023-07-17"], ["address_city", "Touama"], ["address_postal_code", "213421"], ["address_street", "96893 Scoville Place"], ["address_apt", "19804 Rockefeller Plaza"], ["activity_type", 1], ["info_email", "phachettei@twitter.com"], ["created_at", "2024-07-18 04:05:17.559077"], ["updated_at", "2024-07-18 04:05:17.559077"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 8ms (Views: 0.1ms | ActiveRecord: 1.6ms | Allocations: 2782)
+
+
+Started POST "/clients" for ::1 at 2024-07-18 00:05:30 -0400
+Processing by ClientsController#create as */*
+  Parameters: {"client"=>{"name"=>"Newton Erbain", "relationship_start"=>"2023-07-17", "address_city"=>"Dourados", "address_postal_code"=>"79800-000", "address_street"=>"46177 Fulton Circle", "address_apt"=>"00433 Emmet Pass", "activity_type"=>1, "info_email"=>"nerbainj@japanpost.jp"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mClient Create (1.1ms)[0m  [1m[32mINSERT INTO "clients" ("name", "relationship_start", "address_city", "address_postal_code", "address_street", "address_apt", "activity_type", "info_email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["name", "Newton Erbain"], ["relationship_start", "2023-07-17"], ["address_city", "Dourados"], ["address_postal_code", "79800-000"], ["address_street", "46177 Fulton Circle"], ["address_apt", "00433 Emmet Pass"], ["activity_type", 1], ["info_email", "nerbainj@japanpost.jp"], ["created_at", "2024-07-18 04:05:30.137652"], ["updated_at", "2024-07-18 04:05:30.137652"]]
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/clients_controller.rb:16:in `create'
+Completed 201 Created in 7ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 2779)
+
+
+Started POST "/login" for ::1 at 2024-07-18 00:18:38 -0400
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"giovanni@giovanni.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "giovanni@giovanni.com"], ["LIMIT", 1]]
+Completed 200 OK in 370ms (Views: 0.1ms | ActiveRecord: 7.9ms | Allocations: 4139)
+
+

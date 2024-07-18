@@ -4,11 +4,14 @@ import { Client } from '../../models/client';
 import { AppState } from '../../store/app.state';
 import { select, Store } from '@ngrx/store';
 import { getClients } from './clients.selectors'
+import { RouterLink } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   providers: [],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
