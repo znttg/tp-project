@@ -1,13 +1,15 @@
-# app/controllers/contacts_controller.rb
-
 class ContactsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_client
-  before_action :set_contact, only: [:update, :destroy]
+  before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
     @contacts = @client.contacts
     render json: @contacts
+  end
+
+  def show
+    render json: @contact
   end
 
   def create
