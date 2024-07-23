@@ -10,6 +10,7 @@ import { addClient, deleteClient, loadClients } from './clients.actions';
 import { logout } from '../../auth/auth.actions';
 import { ClientsState } from './clients.reducer';
 import { ModalComponent } from '../modal/modal.component';
+import { ActivityType } from '../../models/activity-type.enum';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ClientsComponent implements OnInit {
   clients$: Observable<Client[]>;
   error$: Observable<any>;
 
-  clientForm: FormGroup;
+  clientForm: FormGroup; 
+  activityTypes = Object.values(ActivityType);
   showModal: boolean = false;
   deleteClientId: number | null = null;
 

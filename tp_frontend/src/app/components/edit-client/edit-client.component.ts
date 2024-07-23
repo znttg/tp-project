@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { ClientsState } from '../clients/clients.reducer';
 import { loadClients, updateClient } from '../clients/clients.actions';
 import { CommonModule } from '@angular/common';
+import { ActivityType } from '../../models/activity-type.enum';
 
 @Component({
   selector: 'app-edit-client',
@@ -23,6 +24,7 @@ export class EditClientComponent {
   
   clientForm: FormGroup;
   id: number;
+  activityTypes = Object.values(ActivityType);
 
   constructor() {
     this.id = this.route.snapshot.params['id'];
