@@ -1,71 +1,92 @@
 <div class="container mx-auto p-4">
     <h1 class="text-2xl mb-4">Edit Client</h1>
-    <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
-      <div class="mb-4">
-        <label class="block text-gray-700">Name</label>
-        <input formControlName="name" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('name')?.invalid && (clientForm.get('name')?.dirty || clientForm.get('name')?.touched)" class="text-red-500">
-          Name is required.
+
+    <!-- Tabs -->
+    <div class="mb-4">
+      <ul class="flex border-b">
+        <li class="mr-1">
+          <a (click)="selectTab('client')" class="inline-block py-2 px-4 text-blue-500 cursor-pointer" [ngClass]="{'border-b-2 border-blue-500': selectedTab === 'client'}">Client Info</a>
+        </li>
+        <li class="mr-1">
+          <a (click)="selectTab('contacts')" class="inline-block py-2 px-4 text-blue-500 cursor-pointer" [ngClass]="{'border-b-2 border-blue-500': selectedTab === 'contacts'}">Contacts</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Tab Content -->
+    <div *ngIf="selectedTab === 'client'">
+      <!-- Client form here -->
+      <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
+        <div class="mb-4">
+          <label class="block text-gray-700">Name</label>
+          <input formControlName="name" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('name')?.invalid && (clientForm.get('name')?.dirty || clientForm.get('name')?.touched)" class="text-red-500">
+            Name is required.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Relationship Start</label>
-        <input type="date" formControlName="relationship_start" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('relationship_start')?.invalid && (clientForm.get('relationship_start')?.dirty || clientForm.get('relationship_start')?.touched)" class="text-red-500">
-          Relationship start date is required.
+        <div class="mb-4">
+          <label class="block text-gray-700">Relationship Start</label>
+          <input type="date" formControlName="relationship_start" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('relationship_start')?.invalid && (clientForm.get('relationship_start')?.dirty || clientForm.get('relationship_start')?.touched)" class="text-red-500">
+            Relationship start date is required.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">City</label>
-        <input formControlName="address_city" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('address_city')?.invalid && (clientForm.get('address_city')?.dirty || clientForm.get('address_city')?.touched)" class="text-red-500">
-          City is required.
+        <div class="mb-4">
+          <label class="block text-gray-700">City</label>
+          <input formControlName="address_city" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('address_city')?.invalid && (clientForm.get('address_city')?.dirty || clientForm.get('address_city')?.touched)" class="text-red-500">
+            City is required.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Postal Code</label>
-        <input formControlName="address_postal_code" 
-        class="border rounded px-4 py-2 w-full" 
-        (input)="onPostalCodeInput($event)"
-        maxlength="7" 
-        placeholder="A1A 1A1">
-        <div *ngIf="clientForm.get('address_postal_code')?.invalid && (clientForm.get('address_postal_code')?.dirty || clientForm.get('address_postal_code')?.touched)" class="text-red-500">
-          Postal code is required and must be in the format A1A 1A1.
+        <div class="mb-4">
+          <label class="block text-gray-700">Postal Code</label>
+          <input formControlName="address_postal_code" 
+          class="border rounded px-4 py-2 w-full" 
+          (input)="onPostalCodeInput($event)"
+          maxlength="7" 
+          placeholder="A1A 1A1">
+          <div *ngIf="clientForm.get('address_postal_code')?.invalid && (clientForm.get('address_postal_code')?.dirty || clientForm.get('address_postal_code')?.touched)" class="text-red-500">
+            Postal code is required and must be in the format A1A 1A1.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Street</label>
-        <input formControlName="address_street" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('address_street')?.invalid && (clientForm.get('address_street')?.dirty || clientForm.get('address_street')?.touched)" class="text-red-500">
-          Street is required.
+        <div class="mb-4">
+          <label class="block text-gray-700">Street</label>
+          <input formControlName="address_street" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('address_street')?.invalid && (clientForm.get('address_street')?.dirty || clientForm.get('address_street')?.touched)" class="text-red-500">
+            Street is required.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Apartment</label>
-        <input formControlName="address_apt" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('address_apt')?.invalid && (clientForm.get('address_apt')?.dirty || clientForm.get('address_apt')?.touched)" class="text-red-500">
-          Apartment must be maximum 12 characters long.
+        <div class="mb-4">
+          <label class="block text-gray-700">Apartment</label>
+          <input formControlName="address_apt" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('address_apt')?.invalid && (clientForm.get('address_apt')?.dirty || clientForm.get('address_apt')?.touched)" class="text-red-500">
+            Apartment must be maximum 12 characters long.
+          </div>
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Activity Type</label>
-        <select formControlName="activity_type" class="border rounded px-4 py-2 w-full">
-          <div *ngIf="clientForm.get('activity_type')?.invalid && (clientForm.get('activity_type')?.dirty || clientForm.get('activity_type')?.touched)" class="text-red-500">
-          Activity type is required.
+        <div class="mb-4">
+          <label class="block text-gray-700">Activity Type</label>
+          <select formControlName="activity_type" class="border rounded px-4 py-2 w-full">
+            <div *ngIf="clientForm.get('activity_type')?.invalid && (clientForm.get('activity_type')?.dirty || clientForm.get('activity_type')?.touched)" class="text-red-500">
+            Activity type is required.
+          </div>
+            <option *ngFor="let type of activityTypes" [value]="type">{{ type }}</option>
+          </select>
         </div>
-          <option *ngFor="let type of activityTypes" [value]="type">{{ type }}</option>
-        </select>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Info Email</label>
-        <input formControlName="info_email" class="border rounded px-4 py-2 w-full">
-        <div *ngIf="clientForm.get('info_email')?.invalid && (clientForm.get('info_email')?.dirty || clientForm.get('info_email')?.touched)" class="text-red-500">
-          Info email is required and must be a valid email address.
+        <div class="mb-4">
+          <label class="block text-gray-700">Info Email</label>
+          <input formControlName="info_email" class="border rounded px-4 py-2 w-full">
+          <div *ngIf="clientForm.get('info_email')?.invalid && (clientForm.get('info_email')?.dirty || clientForm.get('info_email')?.touched)" class="text-red-500">
+            Info email is required and must be a valid email address.
+          </div>
         </div>
-      </div>
-      <div class="flex justify-end">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
-        <a [routerLink]="['/clients']" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Cancel</a>
-      </div>
-    </form>
+        <div class="flex justify-end">
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+          <a [routerLink]="['/clients']" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Cancel</a>
+        </div>
+      </form>
+    </div>
+    
+    <div *ngIf="selectedTab === 'contacts'">
+      <app-contacts [clientId]="clientId"></app-contacts>
+    </div>
   </div>

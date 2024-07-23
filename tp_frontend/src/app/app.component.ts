@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as AuthActions from './auth/auth.actions';
 import { ClientsComponent } from './components/clients/clients.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { ModalComponent } from './components/modal/modal.component';
     RouterOutlet,
     HeaderComponent,
     ClientsComponent,
+    ContactsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
