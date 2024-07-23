@@ -8,6 +8,7 @@ import { Contact } from '../../models/contact';
 import { createContact, deleteContact, loadContacts, updateContact } from '../contacts/contacts.actions';
 import { ContactsState } from '../contacts/contacts.reducer';
 import { ModalComponent } from '../modal/modal.component';
+import { selectContacts } from './contacts.selector';
 
 @Component({
   selector: 'app-contacts',
@@ -31,7 +32,7 @@ export class ContactsComponent implements OnInit {
   
 
   constructor() {
-    this.contacts$ = this.store.pipe(select(state => state.contact.contacts));
+    this.contacts$ = this.store.pipe(select(selectContacts));
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
       first_name: ['', Validators.required],
@@ -39,8 +40,6 @@ export class ContactsComponent implements OnInit {
       ext: [''],
       email: ['', [Validators.required, Validators.email]]
     });
-
-    
   }
 
   ngOnInit(): void {
