@@ -1,0 +1,41 @@
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl mb-4">Edit Client</h1>
+    <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
+      <div class="mb-4">
+        <label class="block text-gray-700">Name</label>
+        <input formControlName="name" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Relationship Start</label>
+        <input type="date" formControlName="relationship_start" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">City</label>
+        <input formControlName="address_city" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Postal Code</label>
+        <input formControlName="address_postal_code" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Street</label>
+        <input formControlName="address_street" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Apartment</label>
+        <input formControlName="address_apt" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Activity Type</label>
+        <input formControlName="activity_type" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Info Email</label>
+        <input formControlName="info_email" class="border rounded px-4 py-2 w-full">
+      </div>
+      <div class="flex justify-end">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+        <a [routerLink]="['/clients']" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Cancel</a>
+      </div>
+    </form>
+  </div>

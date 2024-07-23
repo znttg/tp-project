@@ -9,7 +9,7 @@ export const addClient = createAction('[Clients] Add Client', props<{ client: Cl
 export const addClientSuccess = createAction('[Clients] Add Client Success', props<{ client: Client }>());
 export const addClientFailure = createAction('[Clients] Add Client Failure', props<{ error: any }>());
 
-export const updateClient = createAction('[Client] Update Client', props<{ client: Client }>());
+export const updateClient = createAction('[Client] Update Client', props<{ clientId: number, client: Client }>());
 export const updateClientSuccess = createAction('[Client] Update Client Success', props<{ client: Client }>());
 export const updateClientFailure = createAction('[Client] Update Client Failure', props<{ error: string }>());
 

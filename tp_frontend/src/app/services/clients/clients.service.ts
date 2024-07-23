@@ -26,7 +26,7 @@ export class ClientsService {
   }
 
   updateClient(id: number, client: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/client/${id}`, { client });
+    return this.http.put(`${this.apiUrl}/clients/${id}`, { client });
   }
 
   deleteClient(clientId: number): Observable<void> {

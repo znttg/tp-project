@@ -2,9 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-
 import * as ClientsActions from './clients.actions';
 import { ClientsService } from '../../services/clients/clients.service';
+import { updateClient, updateClientFailure, updateClientSuccess } from './clients.actions';
 
 @Injectable()
 export class ClientsEffects {
@@ -31,6 +31,18 @@ export class ClientsEffects {
       )
     )
   ));
+
+  updateClient$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateClient),
+      mergeMap((action) =>
+        this.clientsService.updateClient(action.clientId, action.client).pipe(
+          map((client) => updateClientSuccess({ client })),
+          catchError((error) => of(updateClientFailure({ error })))
+        )
+      )
+    )
+  );
 
   deleteClient$ = createEffect(() => this.actions$.pipe(
     ofType(ClientsActions.deleteClient),

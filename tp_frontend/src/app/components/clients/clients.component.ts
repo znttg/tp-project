@@ -1,53 +1,99 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { async, Observable, pipe } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { Client } from '../../models/client';
-import { AppState } from '../../store/app.state';
-import { ActionsSubject, select, Store, StoreModule } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { getClientsError, selectAllClients } from './clients.selectors'
-import { RouterLink } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { addClient, deleteClient, loadClients } from './clients.actions';
-import { isLoggedIn, selectError } from '../../auth/auth.selectors';
-import { asyncScheduler } from 'rxjs';
 import { logout } from '../../auth/auth.actions';
+import { ClientsState } from './clients.reducer';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, ModalComponent],
   providers: [],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
 })
 export class ClientsComponent implements OnInit {
 
-  private store = inject(Store<AppState>)
+  private formBuilder = inject(FormBuilder)
+  private store = inject(Store<{client: ClientsState}>)
+  private router = inject(Router);
+
   clients$: Observable<Client[]>;
   error$: Observable<any>;
-  isAuthenticated$ = this.store.pipe(select(isLoggedIn));
+
+  clientForm: FormGroup;
+  showModal: boolean = false;
+  deleteClientId: number | null = null;
+
+  errorCatcher!: Subscription;
 
   constructor() {
     this.clients$ = this.store.pipe(select(selectAllClients));
     this.error$ = this.store.pipe(select(getClientsError))
+    this.clientForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      relationship_start: ['', Validators.required],
+      address_city: ['', Validators.required],
+      address_postal_code: ['', Validators.required],
+      address_street: ['', Validators.required],
+      address_apt: [''],
+      activity_type: ['', Validators.required],
+      info_email: ['', [Validators.required, Validators.email]]
+    });
   }
 
   ngOnInit() {
     this.store.dispatch(loadClients());
-    this.error$.subscribe((error) => {
+    this.errorCatcher = this.error$.subscribe((error) => {
       if  (error && error.status === 401) {
         console.error('Unauthorized access - redirecting to login');
-        this.store.dispatch(logout())
+        this.store.dispatch(logout());
       }
     })
   }
 
-  onAddClient() {
-
+  ngOnDestroy(){
+    this.errorCatcher.unsubscribe();
   }
 
-  onDeleteClient(clientId: number) {
-    this.store.dispatch(deleteClient({ clientId }));
+  reload(){
+    this.router.navigate([this.router.url])
+  }
+
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.clientForm.reset();
+    this.deleteClientId = null;
+  }
+
+  saveClient(): void {
+    if (this.clientForm.valid) {
+      this.store.dispatch(addClient({ client: this.clientForm.value }));
+      this.closeModal();
+    }
+  }
+
+  confirmDeleteClient(id: number): void {
+    this.deleteClientId = id;
+    this.openModal();
+  }
+
+  deleteClient(): void {
+    if (this.deleteClientId !== null) {
+      this.store.dispatch(deleteClient({ clientId: this.deleteClientId }));
+      this.closeModal();
+    }
   }
 }
