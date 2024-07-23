@@ -5,6 +5,7 @@ import * as AuthActions from '../../auth/auth.actions';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthState } from '../../auth/auth.reducer';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -17,8 +18,14 @@ import { AuthState } from '../../auth/auth.reducer';
 })
 export class LoginComponent {
 
+  error$: Observable<string | null>;
+
   private formBuilder = inject(FormBuilder)
   private store = inject(Store<AuthState>)
+
+  constructor() {
+    this.error$ = this.store.select(state => state.auth.error);
+  }
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],

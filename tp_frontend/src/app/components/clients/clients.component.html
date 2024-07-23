@@ -1,37 +1,38 @@
 <div class="relative isolate px-6 pt-14 lg:px-8">
   <div class="mx-auto py-0 sm:py-0 lg:py-0">
     <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-      <div class="relative rounded-3xl px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"><div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="mb-5 flex flex-row justify-between">
-          <h2 class=" text-start text-2xl font-bold leading-9 tracking-tight text-gray-900">Customers List</h2>
-          <button class="cursor-pointer -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" (click)="openModal()"><span class="mr-2">&plus;</span>Add</button>
+      <div class="relative rounded-3xl px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+          <div class="mb-5 flex flex-row justify-between">
+            <h2 class=" text-start text-2xl font-bold leading-9 tracking-tight text-gray-900">Customers List</h2>
+            <button class="cursor-pointer -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" (click)="openModal()"><span class="mr-2">&plus;</span>Add</button>
+          </div>
+          <table class="table-auto border-collapse border border-slate-400">
+            <thead>
+              <tr class="">
+                <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Name</th>
+                <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Relationship Start</th>
+                <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Activity Type</th>
+                <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Email</th>
+                <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients$ | async">
+                <td class="border border-slate-300 pr-5 pl-2">{{ client.name }}</td>
+                <td class="border border-slate-300 pr-5 pl-2">{{ client.relationship_start | date }}</td>
+                <td class="border border-slate-300 pr-5 pl-2">{{ client.activity_type }}</td>
+                <td class="border border-slate-300 pr-5 pl-2">{{ client.info_email }}</td>
+                <td class="border border-slate-300 pr-5 pl-2 text-center">
+                  <button class="ml-3 text-xl" [routerLink]="['/clients', client.id]"><span aria-hidden="true">&#9998;</span></button>
+                  <button class="ml-5 text-xl" (click)="confirmDeleteClient(client.id!)"><span aria-hidden="true">&#9746;</span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <table class="table-auto border-collapse border border-slate-400">
-          <thead>
-            <tr class="">
-              <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Name</th>
-              <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Relationship Start</th>
-              <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Activity Type</th>
-              <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2">Email</th>
-              <th class="bg-slate-200 border border-slate-300 pl-5 pr-5 pt-2 pb-2"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let client of clients$ | async">
-              <td class="border border-slate-300 pr-5 pl-2">{{ client.name }}</td>
-              <td class="border border-slate-300 pr-5 pl-2">{{ client.relationship_start | date }}</td>
-              <td class="border border-slate-300 pr-5 pl-2">{{ client.activity_type }}</td>
-              <td class="border border-slate-300 pr-5 pl-2">{{ client.info_email }}</td>
-              <td class="border border-slate-300 pr-5 pl-2 text-center">
-                <button class="ml-3 text-xl" [routerLink]="['/clients', client.id]"><span aria-hidden="true">&#9998;</span></button>
-                <button class="ml-5 text-xl" (click)="confirmDeleteClient(client.id!)"><span aria-hidden="true">&#9746;</span></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
 </div>
 
 <div class="container mx-auto p-4">

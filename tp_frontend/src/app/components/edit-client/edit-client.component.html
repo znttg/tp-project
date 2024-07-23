@@ -15,7 +15,6 @@
 
     <!-- Tab Content -->
     <div *ngIf="selectedTab === 'client'">
-      <!-- Client form here -->
       <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
         <div class="mb-4">
           <label class="block text-gray-700">Name</label>

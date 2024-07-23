@@ -11,14 +11,16 @@ import { authReducer } from './auth/auth.reducer';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { clientsReducer } from './components/clients/clients.reducer';
 import { ClientsEffects } from './components/clients/clients.effects';
+import { contactsReducer } from './components/contacts/contacts.reducer';
+import { ContactEffects } from './components/contacts/contacts.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(BrowserModule),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideClientHydration(withEventReplay()),
-    provideStore({ auth: authReducer, clients: clientsReducer }),
-    provideEffects([AuthEffects, ClientsEffects]),
+    provideStore({ auth: authReducer, clients: clientsReducer, contacts: contactsReducer }),
+    provideEffects([AuthEffects, ClientsEffects, ContactEffects]),
     provideStoreDevtools(),
     provideRouter(routes),
     provideHttpClient(

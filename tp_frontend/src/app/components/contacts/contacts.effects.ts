@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
@@ -7,12 +7,15 @@ import { loadContacts, loadContactsSuccess, loadContactsFailure, createContact, 
 
 @Injectable()
 export class ContactEffects {
-  constructor(private actions$: Actions, private contactService: ContactService) {}
+  private actions$ = inject(Actions);
+  private contactService = inject(ContactService)
+
+  constructor() {}
 
   loadContacts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadContacts),
-      mergeMap(({ clientId }) =>
+      mergeMap(({ clientId }) => 
         this.contactService.getContacts(clientId).pipe(
           map(contacts => loadContactsSuccess({ contacts })),
           catchError(error => of(loadContactsFailure({ error })))
@@ -36,8 +39,8 @@ export class ContactEffects {
   updateContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateContact),
-      mergeMap(({ clientId, contact }) =>
-        this.contactService.updateContact(clientId, contact.id!, contact).pipe(
+      mergeMap(({ contactId, contact }) =>
+        this.contactService.updateContact(contactId, contact.id!, contact).pipe(
           map(updatedContact => updateContactSuccess({ contact: updatedContact })),
           catchError(error => of(updateContactFailure({ error })))
         )

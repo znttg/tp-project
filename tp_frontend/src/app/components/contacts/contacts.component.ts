@@ -1,26 +1,28 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { RouterLink } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Contact } from '../../models/contact';
 import { createContact, deleteContact, loadContacts, updateContact } from '../contacts/contacts.actions';
 import { ContactsState } from '../contacts/contacts.reducer';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, ModalComponent],
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
   @Input() clientId!: number;
+  contacts$: Observable<Contact[]>;
+
   private formBuilder = inject(FormBuilder)
   private store = inject(Store<{contact: ContactsState}>)
 
-  contacts$: Observable<Contact[]>;
   contactForm: FormGroup;
   selectedContactId: number | null = null;
   showContactModal: boolean = false;
@@ -29,15 +31,16 @@ export class ContactsComponent implements OnInit {
   
 
   constructor() {
+    this.contacts$ = this.store.pipe(select(state => state.contact.contacts));
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      first_name: ['', Validators.required],
       tel: ['', Validators.required],
       ext: [''],
       email: ['', [Validators.required, Validators.email]]
     });
 
-    this.contacts$ = this.store.select((state) => state.contact.contacts);
+    
   }
 
   ngOnInit(): void {
@@ -71,11 +74,11 @@ export class ContactsComponent implements OnInit {
   onSubmit(): void {
     if (this.contactForm.valid) {
       if (this.selectedContactId) {
-        this.store.dispatch(updateContact({ clientId: this.selectedContactId, contact: this.contactForm.value }));
+        this.store.dispatch(updateContact({ contactId: this.selectedContactId, contact: this.contactForm.value }));
       } else {
         this.store.dispatch(createContact({ clientId: this.clientId, contact: this.contactForm.value }));
       }
-      this.resetForm();
+      this.closeModal();
     }
   }
 
