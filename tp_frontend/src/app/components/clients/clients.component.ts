@@ -11,7 +11,7 @@ import { logout } from '../../auth/auth.actions';
 import { ClientsState } from './clients.reducer';
 import { ModalComponent } from '../modal/modal.component';
 import { ActivityType } from '../../models/activity-type.enum';
-
+import { canadianPostalCodeValidator } from '../../validators/postal-code.validator';
 
 @Component({
   selector: 'app-clients',
@@ -44,9 +44,9 @@ export class ClientsComponent implements OnInit {
       name: ['', Validators.required],
       relationship_start: ['', Validators.required],
       address_city: ['', Validators.required],
-      address_postal_code: ['', Validators.required],
+      address_postal_code: ['', [Validators.required, canadianPostalCodeValidator()]],
       address_street: ['', Validators.required],
-      address_apt: [''],
+      address_apt: ['', [Validators.maxLength(12)]],
       activity_type: ['', Validators.required],
       info_email: ['', [Validators.required, Validators.email]]
     });
@@ -97,5 +97,11 @@ export class ClientsComponent implements OnInit {
       this.store.dispatch(deleteClient({ clientId: this.deleteClientId }));
       this.closeModal();
     }
+  }
+
+  onPostalCodeInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.toUpperCase();
+    this.clientForm.get('address_postal_code')?.setValue(input.value);
   }
 }

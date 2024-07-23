@@ -4,9 +4,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ClientsService } from '../../services/clients/clients.service';
 import { Store } from '@ngrx/store';
 import { ClientsState } from '../clients/clients.reducer';
-import { loadClients, updateClient } from '../clients/clients.actions';
+import { updateClient } from '../clients/clients.actions';
 import { CommonModule } from '@angular/common';
 import { ActivityType } from '../../models/activity-type.enum';
+import { canadianPostalCodeValidator } from '../../validators/postal-code.validator';
 
 @Component({
   selector: 'app-edit-client',
@@ -32,9 +33,9 @@ export class EditClientComponent {
       name: ['', Validators.required],
       relationship_start: ['', Validators.required],
       address_city: ['', Validators.required],
-      address_postal_code: ['', Validators.required],
+      address_postal_code: ['', [Validators.required, canadianPostalCodeValidator()]],
       address_street: ['', Validators.required],
-      address_apt: [''],
+      address_apt: ['', [Validators.maxLength(12)]],
       activity_type: ['', Validators.required],
       info_email: ['', [Validators.required, Validators.email]]
     });
@@ -51,5 +52,11 @@ export class EditClientComponent {
       this.store.dispatch(updateClient({ clientId: this.id, client: this.clientForm.value }));
       this.router.navigate(['/clients']);
     }
+  }
+
+  onPostalCodeInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.toUpperCase();
+    this.clientForm.get('address_postal_code')?.setValue(input.value);
   }
 }
